@@ -40,7 +40,7 @@ class App extends Component {
             closeModal={this.closeModal}
           />
           <StyledText welcome >
-            Welcome to Send Train Are you sure redux is here?
+            Welcome to Send Train
           </StyledText>
           <ClimbInput onSubmitClimb={this.addClimb}/>
           <ClimbList 

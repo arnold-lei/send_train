@@ -1,6 +1,7 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import styled from 'styled-components/native';
+import Icon from 'react-native-vector-icons/dist/Feather'
 
 const ClimbDetail = props => {
   let modalContent = null; 
@@ -22,10 +23,15 @@ const ClimbDetail = props => {
       {modalContent}
       <ClimbDetailContainer>
         <View>
-          <StyledButton 
-            title="Delete" 
+          <TouchableOpacity
             onPress={props.onDeleteClimb}
-          />
+          >
+            <View>
+              <Text>Delete</Text>
+              <Icon name="trash" size={30} color="black" />
+            </View>
+          </TouchableOpacity>
+          
           <StyledButton 
             title="Close"
             onPress={props.closeModal}
