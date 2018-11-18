@@ -19,9 +19,10 @@ export const deleteClimb = () => {
 }
 
 export const selectClimb = (key) => {
+  console.log("we out herre", key)
   return {
     type: SELECT_CLIMB,
-    key: climbKey,
+    key: key,
   }
 }
 export const deselectClimb = (key) => {

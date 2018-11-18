@@ -7,10 +7,8 @@ import {name as appName} from './app.json';
 import configureStore from './src/store/configureStore'
 
 const store = configureStore();
-console.log(store)
 const RNRedux = () => (
-  
-  <Provider store={store}>
+  < Provider store={store} >
     <App />
   </Provider>
 )

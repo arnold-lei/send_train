@@ -14,6 +14,7 @@ import {
 
 class App extends Component {
   selectClimb = key => {
+    console.log(this.props)
     this.props.onSelectClimb(key)
   };
   addClimb = climbName => {
@@ -23,7 +24,7 @@ class App extends Component {
     this.props.onDeleteClimb()
   }
   closeModal = () => {
-    this.props.onDeselectClimb
+    this.props.onDeselectClimb()
   }
   render() {    
     return (
@@ -39,7 +40,7 @@ class App extends Component {
             closeModal={this.closeModal}
           />
           <StyledText welcome >
-            Welcome to Send Train Are you sure redux is here?$
+            Welcome to Send Train Are you sure redux is here?
           </StyledText>
           <ClimbInput onSubmitClimb={this.addClimb}/>
           <ClimbList 
@@ -51,22 +52,21 @@ class App extends Component {
   }
 }
 const mapStateToProps = state => {
-  console.log(state)
   return {
-    climbs: state.climbs,
-    selectedClimb: state.selectedClimb
+    climbs: state.climbs.climbs,
+    selectedClimb: state.climbs.selectedClimb
   };
 };
 const mapDispatchToPros = dispatch => {
   return {
     onAddClimb:(name) => dispatch(addClimb(name)),
-    onSelectClimb: (key) =>  dispatch(selectPlace(key)),
+    onSelectClimb: (key) =>  dispatch(selectClimb(key)),
     onDeselectClimb: () => dispatch(deselectClimb()),
     onDeleteClimb: () => dispatch(deleteClimb()),
   };
 };
 
-export default connect(mapDispatchToPros, mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToPros)(App);
 
 const StyledView = styled.View`
   background-color: papayawhip; 
