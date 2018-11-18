@@ -1,51 +1,29 @@
 import React, {Component} from 'react';
-
+import { connect } from 'react-redux';
 import ClimbInput from './src/components/ClimbInput/ClimbInput';
 import ClimbList from './src/components/ClimbList/ClimbList';
 import ClimbDetail from './src/components/ClimbDetail/ClimbDetail'
 import climbImage from './src/assets/beautiful-image.jpg'
 import styled from 'styled-components/native';
+import {
+  addClimb, 
+  selectClimb, 
+  deselectClimb, 
+  deleteClimb
+} from './src/store/actions/index';
 
-export default class App extends Component {
-  state = {
-    climbs: [],
-    selectedClimb: null,
-  }
-  climbSelectedHandler = key => {
-    this.setState(prevState => {
-      return {
-        selectedClimb: prevState.climbs.find(climb => {
-          return climb.key === key;
-        })
-      }
-    })
+class App extends Component {
+  selectClimb = key => {
+    this.props.onSelectClimb(key)
   };
   addClimb = climbName => {
-    this.setState(prevState => {
-      return {
-        climbs: prevState.climbs.concat({
-          key: Math.random().toString(), 
-          name: climbName,
-          image: climbImage,
-        })
-      };
-    });
+    this.props.onAddClimb(climbName);
   };
   deleteClimb = () => {
-    this.setState( prevState => {
-      return {
-        climbs: prevState.climbs.filter(climb => {
-          return climb.key !== this.state.selectedClimb.key
-        }),
-        selectedClimb: null,
-      }
-    })
+    this.props.onDeleteClimb()
   }
   closeModal = () => {
-    console.log('we out herere')
-    this.setState({
-      selectedClimb: null
-    })
+    this.props.onDeselectClimb
   }
   render() {    
     return (
@@ -56,22 +34,39 @@ export default class App extends Component {
           }}
         >
           <ClimbDetail 
-            selectedClimb={this.state.selectedClimb} 
+            selectedClimb={this.props.selectedClimb} 
             onDeleteClimb={this.deleteClimb}
             closeModal={this.closeModal}
           />
           <StyledText welcome >
-            Welcome to Send Train
+            Welcome to Send Train Are you sure redux is here?$
           </StyledText>
           <ClimbInput onSubmitClimb={this.addClimb}/>
           <ClimbList 
-            climbs={this.state.climbs}
-            onClimbSelected={this.climbSelectedHandler}
+            climbs={this.props.climbs}
+            onClimbSelected={this.selectClimb}
           />
         </StyledView>
     );
   }
 }
+const mapStateToProps = state => {
+  console.log(state)
+  return {
+    climbs: state.climbs,
+    selectedClimb: state.selectedClimb
+  };
+};
+const mapDispatchToPros = dispatch => {
+  return {
+    onAddClimb:(name) => dispatch(addClimb(name)),
+    onSelectClimb: (key) =>  dispatch(selectPlace(key)),
+    onDeselectClimb: () => dispatch(deselectClimb()),
+    onDeleteClimb: () => dispatch(deleteClimb()),
+  };
+};
+
+export default connect(mapDispatchToPros, mapStateToProps)(App);
 
 const StyledView = styled.View`
   background-color: papayawhip; 
@@ -86,3 +81,4 @@ const StyledText = styled.Text`
   color: #333;
   margin: 10px;
 `
+

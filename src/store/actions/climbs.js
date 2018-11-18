@@ -3,23 +3,29 @@ import {
   DELETE_CLIMB,
   SELECT_CLIMB,
   DESELECT_CLIMB,
-} from './actionTypes'
+} from './actionTypes';
 
-export const addClimb = (climbName) {
+export const addClimb = (climbName) => {
   return {
     type: ADD_CLIMB, 
     climbName: climbName,
   }
 }
 
-export const deleteClimb = () {
+export const deleteClimb = () => {
   return {
     type: DELETE_CLIMB,
   }
 }
-export const selectClimb = (key) {
+
+export const selectClimb = (key) => {
   return {
     type: SELECT_CLIMB,
     key: climbKey,
+  }
+}
+export const deselectClimb = (key) => {
+  return {
+    type: DESELECT_CLIMB,
   }
 }

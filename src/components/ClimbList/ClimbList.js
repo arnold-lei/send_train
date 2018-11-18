@@ -17,6 +17,7 @@ const ClimbList = props => {
   //     }}
   //   />
   // );
+  console.log(props)
   const ClimbListOutput = props.climbs.map((climb, i) => (
     <ClimbCard
       climbName ={climb.name}
