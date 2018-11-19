@@ -1,84 +1,16 @@
-import React, {Component} from 'react';
-import { connect } from 'react-redux';
-import ClimbInput from './src/components/ClimbInput/ClimbInput';
-import ClimbList from './src/components/ClimbList/ClimbList';
-import ClimbDetail from './src/components/ClimbDetail/ClimbDetail'
-import climbImage from './src/assets/beautiful-image.jpg'
-import styled from 'styled-components/native';
-import {
-  addClimb, 
-  selectClimb, 
-  deselectClimb, 
-  deleteClimb
-} from './src/store/actions/index';
+import { Navigation } from 'react-native-navigation';
+import AuthScreen from './src/screens/Auth/Auth';
+import ShareClimbScreen from './src/screens/ShareClimb/ShareClimb';
+import FindClimbScreen from './src/screens/FindClimb/FindClimb';
 
-class App extends Component {
-  selectClimb = key => {
-    console.log(this.props)
-    this.props.onSelectClimb(key)
-  };
-  addClimb = climbName => {
-    this.props.onAddClimb(climbName);
-  };
-  deleteClimb = () => {
-    this.props.onDeleteClimb()
+//Register Screens
+Navigation.registerComponent("send-train.AuthScreen", () => AuthScreen);
+Navigation.registerComponent("send-train.ShareClimbScreen", () => ShareClimbScreen)
+Navigation.registerComponent("send-train.FindClimbScreen", () => FindClimbScreen)
+//Start the App
+Navigation.startSingleScreenApp({
+  screen: {
+    screen: "send-train.AuthScreen",
+    title: "Login"
   }
-  closeModal = () => {
-    this.props.onDeselectClimb()
-  }
-  render() {    
-    return (
-        <StyledView 
-          contentContainerStyle={{
-            alignItems: 'center',
-            justifyContent: 'flex-start'
-          }}
-        >
-          <ClimbDetail 
-            selectedClimb={this.props.selectedClimb} 
-            onDeleteClimb={this.deleteClimb}
-            closeModal={this.closeModal}
-          />
-          <StyledText welcome >
-            Welcome to Send Train
-          </StyledText>
-          <ClimbInput onSubmitClimb={this.addClimb}/>
-          <ClimbList 
-            climbs={this.props.climbs}
-            onClimbSelected={this.selectClimb}
-          />
-        </StyledView>
-    );
-  }
-}
-const mapStateToProps = state => {
-  return {
-    climbs: state.climbs.climbs,
-    selectedClimb: state.climbs.selectedClimb
-  };
-};
-const mapDispatchToPros = dispatch => {
-  return {
-    onAddClimb:(name) => dispatch(addClimb(name)),
-    onSelectClimb: (key) =>  dispatch(selectClimb(key)),
-    onDeselectClimb: () => dispatch(deselectClimb()),
-    onDeleteClimb: () => dispatch(deleteClimb()),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToPros)(App);
-
-const StyledView = styled.View`
-  background-color: papayawhip; 
-  flex: 1; 
-  padding: 20px; 
-  justify-content: flex-start; 
-  align-items: center; 
-`
-const StyledText = styled.Text`
-  font-size: ${props => props.welcome ? 20 : 15};
-  text-align: center; 
-  color: #333;
-  margin: 10px;
-`
-
+})
