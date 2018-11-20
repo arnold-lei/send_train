@@ -12,14 +12,14 @@ export const addClimb = (climbName) => {
   }
 }
 
-export const deleteClimb = () => {
+export const deleteClimb = (key) => {
   return {
     type: DELETE_CLIMB,
+    key: key,
   }
 }
 
 export const selectClimb = (key) => {
-  console.log("we out herre", key)
   return {
     type: SELECT_CLIMB,
     key: key,

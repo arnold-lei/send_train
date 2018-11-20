@@ -3,24 +3,43 @@ import Icon from 'react-native-vector-icons/Feather';
 
 const startTabs = () => {
   Promise.all([
-    Icon.getImageSource("map-pin", 30),
-    Icon.getImageSource("share-2", 30)
+    Icon.getImageSource("list", 30),
+    Icon.getImageSource("plus-circle", 30), 
+    Icon.getImageSource("menu", 30)
   ]).then(sources => {
     Navigation.startTabBasedApp({
       tabs: [{
-          screen: "send-train.FindClimbScreen",
-          label: "Find Climb",
-          title: "Find CLimb",
-          icon: sources[0]
-
+          screen: "send-train.MyClimbsScreen",
+          label: "My Climbs",
+          title: "My Climbs",
+          icon: sources[0],
+          navigatorButtons:{
+            leftButtons:[{
+              icon: sources[2],
+              title: "Menu",
+              id: "sideDrawerToggle"
+            }] 
+          }
         },
         {
-          screen: "send-train.ShareClimbScreen",
-          label: "Share Climb",
-          title: "Share CLimb",
-          icon: sources[1]
+          screen: "send-train.AddClimbScreen",
+          label: "Add Climb",
+          title: "Add CLimb",
+          icon: sources[1],
+          navigatorButtons: {
+            leftButtons: [{
+              icon: sources[2],
+              title: "Menu",
+              id: "sideDrawerToggle"
+            }]
+          }
         }
-      ]
+      ],
+      drawer:{
+        left:{
+          screen: 'send-train.SideDrawerScreen'
+        }
+      }
     });
   })
 };

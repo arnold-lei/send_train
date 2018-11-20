@@ -18,7 +18,6 @@ const initialState = {
 }; 
 
 const climbReducer = (state = initialState, action) => {
-  console.log('state:',state)
   switch (action.type) {
     case 'ADD_CLIMB': 
       return {
@@ -44,11 +43,11 @@ const climbReducer = (state = initialState, action) => {
         })
       }
     case 'DELETE_CLIMB': 
-      //error handle for no selected place
+      //TODO: error handle for no selected place
       return {
         ...state,
         climbs: state.climbs.filter(climb => {
-          return climb.key !== state.selectedClimb.key
+          return climb.key !== action.key
         }),
         selectedClimb: null,
       }
