@@ -35,10 +35,16 @@ const startTabs = () => {
           }
         }
       ],
+      tabsStyles:{
+        tabBarSelectedButtonColor: '#3F5DCB'
+      },
       drawer:{
         left:{
           screen: 'send-train.SideDrawerScreen'
         }
+      },
+      appStyle:{
+        tabBarSelectedButtonColor: '#3F5DCB'
       }
     });
   })

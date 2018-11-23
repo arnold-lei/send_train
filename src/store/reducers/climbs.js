@@ -12,6 +12,20 @@ const initialState = {
         name: 'balls hard',
         grade: 5.9,
         // image: action.climbImage,
+        attempts: [
+          {
+            style: 'attempt'
+          },
+          {
+            style: 'attempt'
+          },
+          {
+            style: 'attempt'
+          },
+          {
+            style: 'flash'
+          },
+        ]
       }
     ],
     selectedClimb: null,
@@ -27,6 +41,8 @@ const climbReducer = (state = initialState, action) => {
           name: action.climbName,
           grade: action.climbGrade, 
           image: action.climbImage,
+          beta: action.climbBeta, 
+
         })
       };
     case 'DESELECT_CLIMB': 
@@ -35,7 +51,6 @@ const climbReducer = (state = initialState, action) => {
           selectedClimb: null, 
         }
     case 'SELECT_CLIMB':
-      console.log('SELECT_CLIMB')
       return {
         ...state,
         selectedClimb: state.climbs.find(climb => {

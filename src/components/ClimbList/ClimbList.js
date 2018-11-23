@@ -19,8 +19,9 @@ const ClimbList = props => {
   // );
   const ClimbListOutput = props.climbs.map((climb, i) => (
     <ClimbCard
-      climbName ={climb.name}
-      climbImage={climb.image}
+      name ={climb.name}
+      image={climb.image}
+      grade={climb.grade}
       key={climb.key}
       onClimbSelected={() => props.onClimbSelected(climb.key)}
     />
