@@ -13,6 +13,8 @@ import ImagePicker from '../../components/ImagePicker/ImagePicker'
 import LocationPicker from '../../components/ImagePicker/ImagePicker'
 import _ from 'lodash'
 
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+
 // todo: Add form validation
 
 class AddClimbScreen extends Component {
@@ -80,6 +82,23 @@ class AddClimbScreen extends Component {
           onChangeText={(val) => this.updateInputState('beta',val)}
         />
         <ImagePicker/>
+        <MapView
+          provider={PROVIDER_GOOGLE}
+          style = {
+            {
+              flex: 1,
+              height: 400,
+              width: 400, 
+              justifyContent: 'flex-end', 
+            }
+          }
+          initialRegion={{
+            latitude: 37.78825,
+            longitude: -122.4324,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+        />
         <LocationPicker/>
 
         <StyledButton primary onPress={this.submitClimbHandler}>Add Climb</StyledButton>
