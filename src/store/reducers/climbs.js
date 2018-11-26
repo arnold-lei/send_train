@@ -34,14 +34,16 @@ const initialState = {
 const climbReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_CLIMB': 
+      console.log(action)
       return {
         ...state, 
         climbs: state.climbs.concat({
           key: Math.random().toString(), 
-          name: action.climbName,
-          grade: action.climbGrade, 
-          image: action.climbImage,
-          beta: action.climbBeta, 
+          name: action.name,
+          grade: action.grade, 
+          image: action.image,
+          beta: action.beta, 
+          // attempts: action.attempts,
 
         })
       };

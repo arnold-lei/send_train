@@ -12,7 +12,7 @@ const ClimbCard = props => (
     <Card>
       <Text>Name:{props.name}</Text>
       <Text>Grade: {props.grade}</Text>
-      <Text>Attempts: {props.attempts.length}</Text>
+      {props.length && <Text>Attempts: {props.attempts.length}</Text>}
       <ButtonWrapper>
         <StyledButton
           primary
@@ -34,11 +34,11 @@ const ButtonWrapper = styled.View`
 `
 const ClimbCardWrapper = styled.TouchableOpacity`
   width:100%;
+  flex: 1;
 `
 const ClimbImage = styled.Image`
   margin-right: 10px;
   width: 100px;
-  height: 100px; 
 `
 
 

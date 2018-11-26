@@ -22,6 +22,7 @@ const ClimbList = props => {
       name ={climb.name}
       image={climb.image}
       grade={climb.grade}
+      attempts={climb.attempts}
       key={climb.key}
       onClimbSelected={() => props.onClimbSelected(climb.key)}
     />

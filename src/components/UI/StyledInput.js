@@ -1,5 +1,6 @@
 import React from 'react'; 
 import styled from 'styled-components/native';
+import * as Colors from '../../globals/Colors'
 
 const styledInput = props => (
   <InputWrapper>
@@ -19,11 +20,11 @@ const Label = styled.Text`
 `
 const StyledInput = styled.TextInput`
   width: 100%;
-  border: 2px solid #3F5DCB ;
+  border: 2px solid ${props => props.invalid ? Colors.error : Colors.primary};
   padding: 5px 10px;
   height: 35px; 
   margin-bottom:15px; 
-  background-color:  #B9C4D6;
+  background-color:  ${props => props.invalid ? Colors.errorBackground: Colors.secondary};
   /* opacity:0.7; */
 `
 export default styledInput;
