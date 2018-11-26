@@ -24,7 +24,7 @@ const startTabs = () => {
         {
           screen: "send-train.AddClimbScreen",
           label: "Add Climb",
-          title: "Add CLimb",
+          title: "Add Climb",
           icon: sources[1],
           navigatorButtons: {
             leftButtons: [{

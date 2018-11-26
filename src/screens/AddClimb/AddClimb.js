@@ -10,9 +10,8 @@ import {addClimb} from '../../store/actions/index';
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/Feather';
 import ImagePicker from '../../components/ImagePicker/ImagePicker'
-import LocationPicker from '../../components/ImagePicker/ImagePicker'
+import LocationPicker from '../../components/LocationPicker/LocationPicker'
 import _ from 'lodash'
-
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 // todo: Add form validation
@@ -64,6 +63,7 @@ class AddClimbScreen extends Component {
     return (
       <StyleScrollView>
         <Title>Add Climb</Title>
+         <LocationPicker/>
         <StyledInput
           label="Climb Name"
           value={this.state.climbInfo.name}
@@ -82,24 +82,6 @@ class AddClimbScreen extends Component {
           onChangeText={(val) => this.updateInputState('beta',val)}
         />
         <ImagePicker/>
-        <MapView
-          provider={PROVIDER_GOOGLE}
-          style = {
-            {
-              flex: 1,
-              height: 400,
-              width: 400, 
-              justifyContent: 'flex-end', 
-            }
-          }
-          initialRegion={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          }}
-        />
-        <LocationPicker/>
 
         <StyledButton primary onPress={this.submitClimbHandler}>Add Climb</StyledButton>
       </StyleScrollView>
