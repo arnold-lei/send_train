@@ -12,7 +12,7 @@ const ClimbCard = props => (
     <Card>
       <Text>Name:{props.name}</Text>
       <Text>Grade: {props.grade}</Text>
-      {props.length && <Text>Attempts: {props.attempts.length}</Text>}
+      {props.attempt && <Text>Attempts: {props.attempts.length}</Text>}
       <ButtonWrapper>
         <StyledButton
           primary

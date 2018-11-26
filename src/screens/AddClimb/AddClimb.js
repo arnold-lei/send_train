@@ -13,6 +13,8 @@ import ImagePicker from '../../components/ImagePicker/ImagePicker'
 import LocationPicker from '../../components/ImagePicker/ImagePicker'
 import _ from 'lodash'
 
+// todo: Add form validation
+
 class AddClimbScreen extends Component {
   //handles color of the burger menu
   static navigatorStyle={
@@ -23,10 +25,8 @@ class AddClimbScreen extends Component {
       name: '',
       grade: '', 
       beta: '',
+      attempts:[]
     }
-    
-
-
   }
   constructor(props){
     super(props);
@@ -52,10 +52,10 @@ class AddClimbScreen extends Component {
     })
   }
   submitClimbHandler = () => {
-    if(_.isEmpty(this.state.climbName.trim())){
+    if(_.isEmpty(this.state.climbInfo.name.trim())){
       alert('The name can\t be empty')
     } else {
-      this.props.onSubmitClimb(this.state.climbName);
+      this.props.onSubmitClimb(this.state.climbInfo);
     }
   }
   render() {
@@ -74,7 +74,7 @@ class AddClimbScreen extends Component {
           onChangeText={(val) => this.updateInputState('grade',val)}
         />
         <StyledInput 
-        value={this.state.climbInfo.beta}
+          value={this.state.climbInfo.beta}
           placeholder="Beta" 
           label="Beta"
           onChangeText={(val) => this.updateInputState('beta',val)}
