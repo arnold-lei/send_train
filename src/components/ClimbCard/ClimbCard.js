@@ -10,25 +10,20 @@ const ClimbCard = props => (
     onPress={props.onClimbSelected}
   >
     <Card>
-      {/* <ClimbImage 
-        resizeMode="contain"
-        source={props.image}
-      /> */}
       <Text>Name:{props.name}</Text>
       <Text>Grade: {props.grade}</Text>
-      <Text>Attempts: {props</Text>
+      {props.attempt && <Text>Attempts: {props.attempts.length}</Text>}
       <ButtonWrapper>
         <StyledButton
           primary
           half
-          onPress={() =>alert('Added Attempt')}
+          onPress={() => alert('Added Attempt')}
         >Add Attempt</StyledButton>
         <StyledButton
           half
           onPress={() => alert('Sent!')}
         >Sent</StyledButton>
       </ButtonWrapper>
-
     </Card>    
   </ClimbCardWrapper>
 )
@@ -38,12 +33,12 @@ const ButtonWrapper = styled.View`
 
 `
 const ClimbCardWrapper = styled.TouchableOpacity`
-  
+  width:100%;
+  flex: 1;
 `
 const ClimbImage = styled.Image`
   margin-right: 10px;
   width: 100px;
-  height: 100px; 
 `
 
 

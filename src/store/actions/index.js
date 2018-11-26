@@ -1,1 +1,2 @@
-export * from './climbs'
+export * from './climbs';
+export * from './auth';

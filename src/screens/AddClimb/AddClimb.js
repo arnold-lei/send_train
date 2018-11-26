@@ -13,14 +13,20 @@ import ImagePicker from '../../components/ImagePicker/ImagePicker'
 import LocationPicker from '../../components/ImagePicker/ImagePicker'
 import _ from 'lodash'
 
+// todo: Add form validation
+
 class AddClimbScreen extends Component {
   //handles color of the burger menu
   static navigatorStyle={
     navBarButtonColor: "#3F5DCB"
   }
   state ={ 
-    climbName: '', 
-
+    climbInfo:{
+      name: '',
+      grade: '', 
+      beta: '',
+      attempts:[]
+    }
   }
   constructor(props){
     super(props);
@@ -35,31 +41,43 @@ class AddClimbScreen extends Component {
       }
     }
   }
-  climbNameChangeHandler= val => {
-    this.setState({climbName: val})
+  updateInputState = (key, val) => {
+    this.setState(prevState=> {
+      return {
+        climbInfo: {
+          ...prevState.climbInfo,
+          [key]: val
+        }
+      }
+    })
   }
   submitClimbHandler = () => {
-    if(_.isEmpty(this.state.climbName.trim())){
+    if(_.isEmpty(this.state.climbInfo.name.trim())){
       alert('The name can\t be empty')
     } else {
-      this.props.onSubmitClimb(this.state.climbName);
+      this.props.onSubmitClimb(this.state.climbInfo);
     }
   }
   render() {
     return (
       <StyleScrollView>
         <Title>Add Climb</Title>
-        <ClimbInput
-          climbName={this.state.climbName}
-          onChangeText={this.climbNameChangeHandler}
+        <StyledInput
+          label="Climb Name"
+          value={this.state.climbInfo.name}
+          onChangeText={(val) => this.updateInputState('name',val)}
         />
         <StyledInput 
+          value={this.state.climbInfo.grade}
           placeholder="Grade" 
           label="Grade"
+          onChangeText={(val) => this.updateInputState('grade',val)}
         />
         <StyledInput 
+          value={this.state.climbInfo.beta}
           placeholder="Beta" 
           label="Beta"
+          onChangeText={(val) => this.updateInputState('beta',val)}
         />
         <ImagePicker/>
         <LocationPicker/>
@@ -71,7 +89,7 @@ class AddClimbScreen extends Component {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    onSubmitClimb: (climbName) => dispatch(addClimb(climbName))
+    onSubmitClimb: (climbInfo) => dispatch(addClimb(climbInfo))
   }
 }
 export default connect(null, mapDispatchToProps)(AddClimbScreen)

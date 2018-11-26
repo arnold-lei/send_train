@@ -38,10 +38,11 @@ const climbReducer = (state = initialState, action) => {
         ...state, 
         climbs: state.climbs.concat({
           key: Math.random().toString(), 
-          name: action.climbName,
-          grade: action.climbGrade, 
-          image: action.climbImage,
-          beta: action.climbBeta, 
+          name: action.climbInfo.name,
+          grade: action.climbInfo.grade, 
+          image: action.climbInfo.image,
+          beta: action.climbInfo.beta, 
+          // attempts: action.attempts,
 
         })
       };

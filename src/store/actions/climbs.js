@@ -5,10 +5,10 @@ import {
   DESELECT_CLIMB,
 } from './actionTypes';
 
-export const addClimb = (climbName) => {
+export const addClimb = (climbInfo) => {
   return {
     type: ADD_CLIMB, 
-    climbName: climbName,
+    climbInfo: climbInfo,
   }
 }
 
