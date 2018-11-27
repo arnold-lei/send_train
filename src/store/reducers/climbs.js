@@ -25,7 +25,11 @@ const initialState = {
           {
             style: 'flash'
           },
-        ]
+        ], 
+        location: {
+          latitude: 40.2399878,
+          longitude: -74.727966,
+        }
       }
     ],
     selectedClimb: null,
@@ -42,6 +46,7 @@ const climbReducer = (state = initialState, action) => {
           grade: action.climbInfo.grade, 
           image: action.climbInfo.image,
           beta: action.climbInfo.beta, 
+          location: action.climbInfo.location
           // attempts: action.attempts,
 
         })
