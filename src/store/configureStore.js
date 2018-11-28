@@ -1,5 +1,6 @@
-import {createStore, combineReducers, compose} from 'redux';
-import climbReducer from './reducers/climbs'
+import {createStore, combineReducers, compose, applyMiddleware} from 'redux';
+import thunk from 'redux-thunk';
+import climbReducer from './reducers/climbs';
 
 const rootReducer = combineReducers({
   climbs: climbReducer
@@ -12,7 +13,7 @@ if(__DEV__){
 }
 
 const configureStore = () => {
-  return createStore(rootReducer, composeEnhancers());
+  return createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 }
 
 export default configureStore; 

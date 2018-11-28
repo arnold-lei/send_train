@@ -1,17 +1,38 @@
 import React, { Component } from 'react'; 
-import {PlaceHolder, Container} from '../UI/Elements'
-import StyledButton from '../../components/UI/StyledButton'
+import {PlaceHolder, Container} from '../UI/Elements';
+import StyledButton from '../../components/UI/StyledButton';
+import { Image, View } from 'react-native';
+import ImagePicker from 'react-native-image-picker';
 
-class ImagePicker extends Component {
+class PickImage extends Component {
+  state={
+    pickedImage: null,
+  }
+  pickedImageHander = () => {
+    ImagePicker.showImagePicker({title: "Pick an Image"}, res =>{
+      if(res.didCancel){
+        console.log('User Cancel')
+      } else if(res.error){
+        console.log('Error', res.error)
+      } else {
+        this.setState({
+          pickedImage: {uri: res.uri}
+        })
+        this.props.onImagePicked({uri: res.uri, base64: res.data})
+      }
+    })
+  }
   render(){
     return(
       <Container nopadding>
-        <PlaceHolder
-         icon="image"
-      />
-      <StyledButton onPress={() => alert('Take a picture of the route')}>Add Image</StyledButton>
+      <View
+        style={{width:'100%', height:150, backgroundColor:'gray'}}
+      >
+        <Image source={this.state.pickedImage} style={{width:'100%', height:'100%'}}/>
+      </View>
+      <StyledButton onPress={this.pickedImageHander}>Add Image</StyledButton>
       </Container>
     )
   }
 }
-export default ImagePicker
+export default PickImage
