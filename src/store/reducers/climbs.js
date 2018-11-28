@@ -29,6 +29,9 @@ const initialState = {
         location: {
           latitude: 40.2399878,
           longitude: -74.727966,
+        }, 
+        image: {
+          uri: 'https://c1.staticflickr.com/5/4096/4744241983_34023bf303_b.jpg'
         }
       }
     ],
@@ -44,9 +47,11 @@ const climbReducer = (state = initialState, action) => {
           key: Math.random().toString(), 
           name: action.climbInfo.name,
           grade: action.climbInfo.grade, 
-          image: action.climbInfo.image,
           beta: action.climbInfo.beta, 
-          location: action.climbInfo.location
+          location: action.climbInfo.location,
+          image: {
+            uri: action.climbInfo.image.uri
+          }
           // attempts: action.attempts,
 
         })

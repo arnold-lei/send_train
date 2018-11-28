@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {
   View,
   Text,
+  Image,
   TouchableOpacity,
   Dimensions, 
   StyleSheet,
@@ -42,7 +43,16 @@ class ClimbDetailScreen extends Component {
           </MapView>
         </MapContainer>
         <InfoContainer>
-          <PlaceImage source={this.props.selectedClimb.image}/>
+          <ImageContainer>
+            <Image 
+            source={
+              {
+                uri: this.props.selectedClimb.image.uri
+              }
+            }
+            style={{width:'100%', height:'100%'}}
+          />
+          </ImageContainer>
           <Text>{this.props.selectedClimb.name}</Text>
           <Text>{this.props.selectedClimb.location.latitude}</Text>
           <Text>{this.props.selectedClimb.location.longitude}</Text>
@@ -69,6 +79,12 @@ const ClimbDetailContainer = styled.View`
 const InfoContainer = styled.View`
   flex:2; 
 `
+const ImageContainer = styled.View`
+  flex:1;
+  margin:-22px; 
+  height:150px;
+`
+
 const MapContainer = styled.View`
   flex:1; 
   margin:-22px;

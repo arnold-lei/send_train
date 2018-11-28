@@ -14,6 +14,7 @@ import java.util.List;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.reactnativenavigation.NavigationApplication;
 import com.airbnb.android.react.maps.MapsPackage;
+import com.imagepicker.ImagePickerPackage; // <-- add this import
 
 public class MainApplication extends NavigationApplication {
 
@@ -59,7 +60,8 @@ public class MainApplication extends NavigationApplication {
 		return Arrays.<ReactPackage>asList(
       new VectorIconsPackage(),
       new MainReactPackage(),
-      new MapsPackage()
+      new MapsPackage(),
+      new ImagePickerPackage()
 		);
 	}
 

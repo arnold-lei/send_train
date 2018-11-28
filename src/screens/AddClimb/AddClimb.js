@@ -9,7 +9,7 @@ import {connect} from 'react-redux';
 import {addClimb} from '../../store/actions/index';
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/Feather';
-import ImagePicker from '../../components/ImagePicker/ImagePicker'
+import PickImage from '../../components/ImagePicker/ImagePicker'
 import LocationPicker from '../../components/LocationPicker/LocationPicker'
 import _ from 'lodash'
 
@@ -30,8 +30,11 @@ class AddClimbScreen extends Component {
       location: {
         latitude: 40.2399878,
         longitude: -74.727966,
+      },
+      image:{
+        uri: ''
       }
-    },
+    }
   }
   constructor(props){
     super(props);
@@ -76,6 +79,18 @@ class AddClimbScreen extends Component {
       }
     })
   }
+  imagePickHandler = image => {
+    this.setState(prevState => {
+      return {
+        climbInfo:{
+          ...prevState.climbInfo, 
+          image:{
+            ...image
+          }
+        }
+      }
+    })
+  }
   render() {
     return (
       <StyleScrollView>
@@ -98,7 +113,7 @@ class AddClimbScreen extends Component {
           label="Beta"
           onChangeText={(val) => this.updateInputState('beta',val)}
         />
-        <ImagePicker/>
+        <PickImage onImagePicked={this.imagePickHandler}/>
 
         <StyledButton primary onPress={this.submitClimbHandler}>Add Climb</StyledButton>
       </StyleScrollView>
