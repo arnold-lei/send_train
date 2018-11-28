@@ -9,10 +9,10 @@ import {connect} from 'react-redux';
 import {addClimb} from '../../store/actions/index';
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/Feather';
-import ImagePicker from '../../components/ImagePicker/ImagePicker'
+import PickImage from '../../components/ImagePicker/ImagePicker'
 import LocationPicker from '../../components/LocationPicker/LocationPicker'
 import _ from 'lodash'
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+
 
 // todo: Add form validation
 
@@ -26,7 +26,14 @@ class AddClimbScreen extends Component {
       name: '',
       grade: '', 
       beta: '',
-      attempts:[]
+      attempts:[], 
+      location: {
+        latitude: 40.2399878,
+        longitude: -74.727966,
+      },
+      image:{
+        uri: ''
+      }
     }
   }
   constructor(props){
@@ -59,11 +66,36 @@ class AddClimbScreen extends Component {
       this.props.onSubmitClimb(this.state.climbInfo);
     }
   }
+  locationPickHandler = location => {
+    this.setState(prevState => {
+      return {
+        climbInfo: {
+          ...this.state.climbInfo, 
+          location:{ 
+            latitude: location.latitude, 
+            longitude: location.longitude
+          }
+        }
+      }
+    })
+  }
+  imagePickHandler = image => {
+    this.setState(prevState => {
+      return {
+        climbInfo:{
+          ...prevState.climbInfo, 
+          image:{
+            ...image
+          }
+        }
+      }
+    })
+  }
   render() {
     return (
       <StyleScrollView>
         <Title>Add Climb</Title>
-         <LocationPicker/>
+         <LocationPicker onLocationPick={this.locationPickHandler}/>
         <StyledInput
           label="Climb Name"
           value={this.state.climbInfo.name}
@@ -81,7 +113,7 @@ class AddClimbScreen extends Component {
           label="Beta"
           onChangeText={(val) => this.updateInputState('beta',val)}
         />
-        <ImagePicker/>
+        <PickImage onImagePicked={this.imagePickHandler}/>
 
         <StyledButton primary onPress={this.submitClimbHandler}>Add Climb</StyledButton>
       </StyleScrollView>
@@ -97,5 +129,4 @@ export default connect(null, mapDispatchToProps)(AddClimbScreen)
 
 const StyleScrollView = styled.ScrollView`
   padding:15px; 
-
 `
