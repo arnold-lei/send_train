@@ -1,4 +1,6 @@
-import { Navigation } from 'react-native-navigation';
+// import { Navigation } from 'react-native-navigation';
+import React, {Component} from 'react';
+import {Text, View} from 'react-native'
 import AuthScreen from './src/screens/Auth/Auth';
 import AddClimbScreen from './src/screens/AddClimb/AddClimb';
 import MyClimbsScreen from './src/screens/MyClimbs/MyClimbs';
@@ -10,18 +12,28 @@ import configureStore from './src/store/configureStore'
 
 const store = configureStore();
 
-
-//Register Screens
-//Myst register screens to navigation
-Navigation.registerComponent("send-train.AuthScreen", () => AuthScreen, store, Provider);
-Navigation.registerComponent("send-train.AddClimbScreen", () => AddClimbScreen, store, Provider)
-Navigation.registerComponent("send-train.MyClimbsScreen", () => MyClimbsScreen, store, Provider)
-Navigation.registerComponent("send-train.ClimbDetailScreen", () => ClimbDetailScreen, store, Provider)
-Navigation.registerComponent("send-train.SideDrawerScreen", () => SideDrawerScreen)
-//Start the App
-Navigation.startSingleScreenApp({
-  screen: {
-    screen: "send-train.AuthScreen",
-    title: "Login"
+class App extends Component {
+  render() {
+    return(
+      <View>
+        <Text style={{color:'white'}}>Hello World</Text>
+      </View>
+    )
   }
-})
+}
+
+export default App
+
+// //Register Screens
+// Navigation.registerComponent("send-train.AuthScreen", () => AuthScreen, store, Provider);
+// Navigation.registerComponent("send-train.AddClimbScreen", () => AddClimbScreen, store, Provider)
+// Navigation.registerComponent("send-train.MyClimbsScreen", () => MyClimbsScreen, store, Provider)
+// Navigation.registerComponent("send-train.ClimbDetailScreen", () => ClimbDetailScreen, store, Provider)
+// Navigation.registerComponent("send-train.SideDrawerScreen", () => SideDrawerScreen)
+// //Start the App
+// Navigation.startSingleScreenApp({
+//   screen: {
+//     screen: "send-train.AuthScreen",
+//     title: "Login"
+//   }
+// })

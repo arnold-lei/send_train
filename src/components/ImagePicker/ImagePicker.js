@@ -36,3 +36,4 @@ class PickImage extends Component {
   }
 }
 export default PickImage
+
